@@ -1,8 +1,10 @@
+
 <NODE code="root">
   <NODE code="csg" description="Contribution sociale généralisée (CSG)">
     <NODE code="activite" description="Revenus d'activité">
       <NODE code="deductible" description="CSG déductible">
         <CODE code="taux" description="taux de la CSG déductible" format="percent">
+          <VALUE deb="2015-01-01" fin="2015-12-31" valeur=".06" />
           <VALUE deb="1998-01-01" fin="2014-12-31" valeur=".051" />
         </CODE>
         <BAREME code="abattement" description="Abattement de la base de la CSG déductible">
@@ -30,8 +32,9 @@
   </NODE>
   <NODE code="impot">
     <CODE code="taux" description="taux d'impôt sur les salaires" format="percent">
+      <VALUE deb="2016-01-01" fuzzy="true" valeur="0.35" />
+      <VALUE deb="2015-01-01" fin="2015-12-31" valeur="0.32" />
       <VALUE deb="1998-01-01" fin="2014-12-31" valeur="0.3" />
     </CODE>
   </NODE>
-
 </NODE>
