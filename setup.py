@@ -20,7 +20,7 @@ setup(
     description = u'Dummy tax and benefit system used for tests',
     license = 'http://www.fsf.org/licensing/licenses/agpl-3.0.html',
     url = 'https://github.com/openfisca/openfisca-dummy-country',
-
+    include_package_data = True,  # Will read MANIFEST.in
     install_requires = [
         'OpenFisca-Core >= 6.1.0, < 8.0',
         ],
