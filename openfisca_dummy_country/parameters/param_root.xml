@@ -1,12 +1,18 @@
-
 <NODE code="root">
   <NODE code="impot">
-    <CODE code="taux" description="taux d'impôt sur les salaires" format="percent">
+    <!-- A basic ongoing parameter -->
+    <CODE code="taux" description="Taux d'impôt sur les salaires" format="percent">
       <VALUE deb="2016-01-01" fuzzy="true" valeur="0.35" />
       <VALUE deb="2015-01-01" fin="2015-12-31" valeur="0.32" />
       <VALUE deb="1998-01-01" fin="2014-12-31" valeur="0.3" />
     </CODE>
+    <!-- A basic interrupted parameter -->
+    <CODE code="bouclier" description="Montant maximum de l'impôt" format="percent">
+      <VALUE deb="2009-01-01" fin="2011-12-31" valeur="0.6" />
+      <VALUE deb="2008-01-01" fin="2008-12-31" valeur="0.5" />
+    </CODE>
   </NODE>
+  <!-- A basic bareme -->
   <NODE code="contribution_sociale" description="Contribution sociale progressive">
     <NODE code="salaire" description="Contribution sur les salaires">
       <BAREME code="bareme" description="Bareme progressif de contribution sociale sur les salaires">
