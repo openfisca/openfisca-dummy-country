@@ -165,14 +165,15 @@ class salaire_net(Variable):
         return salaire_brut * 0.8
 
 
-class csg(Variable):
+class contribution_sociale(Variable):
     column = FloatCol
     entity = Individu
-    label = u"CSG payées sur le salaire"
+    label = u"Contribution payée sur le salaire"
     definition_period = YEAR
 
     def function(individu, period, legislation):
-        taux = legislation(period).csg.activite.deductible.taux
         salaire_brut = individu('salaire_brut', period, options=[ADD])
+        bareme = legislation(period).contribution_sociale.salaire.bareme
 
-        return taux * salaire_brut
+        return bareme.calc(salaire_brut)
+

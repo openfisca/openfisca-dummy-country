@@ -1,40 +1,48 @@
 
 <NODE code="root">
-  <NODE code="csg" description="Contribution sociale généralisée (CSG)">
-    <NODE code="activite" description="Revenus d'activité">
-      <NODE code="deductible" description="CSG déductible">
-        <CODE code="taux" description="taux de la CSG déductible" format="percent">
-          <VALUE deb="2015-01-01" fin="2015-12-31" valeur=".06" />
-          <VALUE deb="1998-01-01" fin="2014-12-31" valeur=".051" />
-        </CODE>
-        <BAREME code="abattement" description="Abattement de la base de la CSG déductible">
-          <TRANCHE code="tranche0">
-            <TAUX>
-              <VALUE deb="1998-01-01" fin="2004-12-31" valeur=".05" />
-              <VALUE deb="2005-01-01" fin="2011-12-31" valeur=".03" />
-              <VALUE deb="2012-01-01" fin="2014-12-31" valeur=".0175" />
-            </TAUX>
-            <SEUIL>
-              <VALUE deb="1998-01-01" fin="2014-12-31" valeur="0" />
-            </SEUIL>
-          </TRANCHE>
-          <TRANCHE code="tranche1">
-            <SEUIL>
-              <VALUE deb="2011-01-01" fin="2014-12-31" valeur="4" />
-            </SEUIL>
-            <TAUX>
-              <VALUE deb="2011-01-01" fin="2014-12-31" valeur="0" />
-            </TAUX>
-          </TRANCHE>
-        </BAREME>
-      </NODE>
-    </NODE>
-  </NODE>
   <NODE code="impot">
     <CODE code="taux" description="taux d'impôt sur les salaires" format="percent">
       <VALUE deb="2016-01-01" fuzzy="true" valeur="0.35" />
       <VALUE deb="2015-01-01" fin="2015-12-31" valeur="0.32" />
       <VALUE deb="1998-01-01" fin="2014-12-31" valeur="0.3" />
     </CODE>
+  </NODE>
+  <NODE code="contribution_sociale" description="Contribution sociale progressive">
+    <NODE code="salaire" description="Contribution sur les salaires">
+      <BAREME code="bareme" description="Bareme progressif de contribution sociale sur les salaires">
+        <TRANCHE code="tranche0">
+          <SEUIL>
+            <VALUE deb="2013-01-01" fuzzy="true" valeur="0" />
+          </SEUIL>
+          <TAUX>
+            <VALUE deb="2017-01-01" fuzzy="true" valeur="0.02" />
+            <VALUE deb="2015-01-01" fin="2016-12-31" valeur="0.04" />
+            <VALUE deb="2013-01-01" fin="2014-12-31" valeur="0.03" />
+          </TAUX>
+        </TRANCHE>
+        <TRANCHE code="tranche1">
+          <SEUIL>
+            <VALUE deb="2017-01-01" fuzzy="true" valeur="6000" />
+            <VALUE deb="2016-01-01" fin="2016-12-31" valeur="12300" />
+            <VALUE deb="2015-01-01" fin="2015-12-31" valeur="12200" />
+            <VALUE deb="2014-01-01" fin="2014-12-31" valeur="12100" />
+            <VALUE deb="2013-01-01" fin="2013-12-31" valeur="12000" />
+          </SEUIL>
+          <TAUX>
+            <VALUE deb="2017-01-01" fuzzy="true" valeur="0.06" />
+            <VALUE deb="2015-01-01" fin="2016-12-31" valeur="0.12" />
+            <VALUE deb="2013-01-01" fin="2014-12-31" valeur="0.10" />
+          </TAUX>
+        </TRANCHE>
+        <TRANCHE code="tranche2">
+          <SEUIL>
+            <VALUE deb="2017-01-01" fuzzy="true" valeur="12400" />
+          </SEUIL>
+          <TAUX>
+            <VALUE deb="2017-01-01" fuzzy="true" valeur="0.12" />
+          </TAUX>
+        </TRANCHE>
+      </BAREME>
+    </NODE>
   </NODE>
 </NODE>

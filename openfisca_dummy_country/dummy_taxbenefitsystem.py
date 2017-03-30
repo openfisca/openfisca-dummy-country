@@ -19,5 +19,5 @@ class DummyTaxBenefitSystem(TaxBenefitSystem):
         TaxBenefitSystem.__init__(self, entities)
         self.Scenario = Scenario
         self.add_legislation_params(path_to_root_params)
-        self.add_legislation_params(path_to_crds_params, 'csg.activite')
+        self.add_legislation_params(path_to_crds_params, 'contribution_sociale')
         self.add_variables_from_directory(path_to_model_dir)
