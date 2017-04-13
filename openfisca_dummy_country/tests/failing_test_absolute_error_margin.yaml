@@ -1,7 +1,7 @@
-- name: "Result within absolute error margin"
+- name: "Failing test: result out of absolute error margin"
   period: 2015-01
   absolute_error_margin: 50
   input_variables:
     salaire_brut: 2000
   output_variables:
-    salaire_net: 1650 # 1600
+    salaire_net: 1660
