@@ -35,10 +35,10 @@ class birth(Variable):
     definition_period = ETERNITY
 
 
-class depcom(Variable):
+class city_code(Variable):
     column = FixedStrCol(max_length = 5)
     entity = Famille
-    label = u"""Code INSEE "depcom" de la commune de résidence de la famille"""
+    label = u"""Code INSEE de la commune de résidence de la famille"""
     definition_period = ETERNITY
 
 
@@ -82,9 +82,9 @@ class dom_tom(Variable):
     definition_period = YEAR
 
     def function(famille, period):
-        depcom = famille('depcom', period)
+        city_code = famille('city_code', period)
 
-        return np.logical_or(startswith(depcom, '97'), startswith(depcom, '98'))
+        return np.logical_or(startswith(city_code, '97'), startswith(city_code, '98'))
 
 
 class revenu_disponible(Variable):
