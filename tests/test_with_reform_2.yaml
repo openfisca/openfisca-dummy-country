@@ -1,0 +1,7 @@
+- name: "Test that needs a reform but does not declare it itself"
+  period: 2015-01
+  # reforms: openfisca_dummy_country.dummy_reforms.neutralization_rsa
+  input_variables:
+    salaire_brut: 0
+  output_variables:
+    rsa: 0
