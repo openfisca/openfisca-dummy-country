@@ -2,14 +2,22 @@
   <NODE code="impot">
     <!-- A basic ongoing parameter -->
     <CODE code="taux" description="Taux d'impôt sur les salaires" format="percent">
-      <VALUE deb="2016-01-01" fuzzy="true" valeur="0.35" />
-      <VALUE deb="2015-01-01" fin="2015-12-31" valeur="0.32" />
-      <VALUE deb="1998-01-01" fin="2014-12-31" valeur="0.3" />
+      <VALUE deb="2016-01-01" valeur="0.35" />
+      <VALUE deb="2015-01-01" valeur="0.32" />
+      <VALUE deb="1998-01-01" valeur="0.3" />
+    </CODE>
+    <!-- A basic parameter which value is expected to change -->
+    <CODE code="bouclier" description="Montant maximum de l'impôt" format="percent">
+      <PLACEHOLDER deb="2012-01-01" />
+      <VALUE deb="2009-01-01" valeur="0.6" />
+      <VALUE deb="2008-01-01" valeur="0.5" />
     </CODE>
     <!-- A basic interrupted parameter -->
-    <CODE code="bouclier" description="Montant maximum de l'impôt" format="percent">
-      <VALUE deb="2009-01-01" fin="2011-12-31" valeur="0.6" />
-      <VALUE deb="2008-01-01" fin="2008-12-31" valeur="0.5" />
+    <CODE code="isf" description="Taux d'impôt sur le patrimoine" format="percent">
+      <END deb="2017-01-01" />
+      <VALUE deb="2016-01-01" valeur="0.9" />
+      <VALUE deb="2015-01-01" valeur="0.11" />
+      <VALUE deb="2000-01-01" valeur="0.1" />
     </CODE>
   </NODE>
   <!-- A basic bareme -->
@@ -18,34 +26,35 @@
       <BAREME code="bareme" description="Bareme progressif de contribution sociale sur les salaires">
         <TRANCHE code="tranche0">
           <SEUIL>
-            <VALUE deb="2013-01-01" fuzzy="true" valeur="0" />
+            <VALUE deb="2013-01-01" valeur="0" />
           </SEUIL>
           <TAUX>
-            <VALUE deb="2017-01-01" fuzzy="true" valeur="0.02" />
-            <VALUE deb="2015-01-01" fin="2016-12-31" valeur="0.04" />
-            <VALUE deb="2013-01-01" fin="2014-12-31" valeur="0.03" />
+            <VALUE deb="2016-01-01" valeur="0.02" />
+            <VALUE deb="2015-01-01" valeur="0.04" />
+            <VALUE deb="2013-01-01" valeur="0.03" />
           </TAUX>
         </TRANCHE>
         <TRANCHE code="tranche1">
           <SEUIL>
-            <VALUE deb="2017-01-01" fuzzy="true" valeur="6000" />
-            <VALUE deb="2016-01-01" fin="2016-12-31" valeur="12300" />
-            <VALUE deb="2015-01-01" fin="2015-12-31" valeur="12200" />
-            <VALUE deb="2014-01-01" fin="2014-12-31" valeur="12100" />
-            <VALUE deb="2013-01-01" fin="2013-12-31" valeur="12000" />
+            <PLACEHOLDER deb="2016-01-01" />
+            <VALUE deb="2015-01-01" valeur="6200" />
+            <VALUE deb="2014-01-01" valeur="6100" />
+            <VALUE deb="2013-01-01" valeur="6000" />
           </SEUIL>
           <TAUX>
-            <VALUE deb="2017-01-01" fuzzy="true" valeur="0.06" />
-            <VALUE deb="2015-01-01" fin="2016-12-31" valeur="0.12" />
-            <VALUE deb="2013-01-01" fin="2014-12-31" valeur="0.10" />
+            <PLACEHOLDER deb="2016-01-01" />
+            <VALUE deb="2015-01-01" valeur="0.12" />
+            <VALUE deb="2013-01-01" valeur="0.10" />
           </TAUX>
         </TRANCHE>
         <TRANCHE code="tranche2">
           <SEUIL>
-            <VALUE deb="2017-01-01" fuzzy="true" valeur="12400" />
+            <END deb="2017-01-01" />
+            <VALUE deb="2015-01-01" valeur="15400" />
           </SEUIL>
           <TAUX>
-            <VALUE deb="2017-01-01" fuzzy="true" valeur="0.12" />
+            <END deb="2017-01-01" />
+            <VALUE deb="2015-01-01" valeur="0.22" />
           </TAUX>
         </TRANCHE>
       </BAREME>

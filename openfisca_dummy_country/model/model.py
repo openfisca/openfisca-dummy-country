@@ -57,6 +57,13 @@ class a_charge_fiscale(Variable):
     definition_period = MONTH
 
 
+class patrimoine(Variable):
+    column = FloatCol
+    entity = Individu
+    label = u"Patrimoine"
+    definition_period = YEAR
+
+
 # Calculated variables
 
 class age(Variable):
@@ -176,4 +183,17 @@ class contribution_sociale(Variable):
         bareme = legislation(period).contribution_sociale.salaire.bareme
 
         return bareme.calc(salaire_brut)
+
+
+class impot_sur_fortune(Variable):
+    column = FloatCol
+    entity = Individu
+    label = u"Impôt sur le patrimoine"
+    definition_period = YEAR
+
+    def function(individu, period, legislation):
+        patrimoine = individu('patrimoine', period)
+        isf = legislation(period).impot.isf
+
+        return isf * patrimoine
 
