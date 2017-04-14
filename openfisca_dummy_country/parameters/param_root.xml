@@ -12,6 +12,13 @@
       <VALUE deb="2009-01-01" valeur="0.6" />
       <VALUE deb="2008-01-01" valeur="0.5" />
     </CODE>
+    <!-- A basic parameter which value is expected to change -->
+    <CODE code="isf" description="Taux d'impôt sur le patrimoine" format="percent">
+      <PLACEHOLDER deb="2017-01-01" />
+      <VALUE deb="2016-01-01" valeur="0.9" />
+      <VALUE deb="2015-01-01" valeur="0.11" />
+      <VALUE deb="2000-01-01" valeur="0.1" />
+    </CODE>
   </NODE>
   <!-- A basic bareme -->
   <NODE code="contribution_sociale" description="Contribution sociale progressive">
