@@ -1,0 +1,15 @@
+- name: "Test using an extension (as paris_logement_familles is not defined in the main model, but in dummy_extension"
+  period: 2015-01
+  absolute_error_margin: 50
+  input_variables:
+    city_code: "75004"
+  output_variables:
+    paris_logement_familles: 100
+
+- name: "Another test using an extension"
+  period: 2015-01
+  absolute_error_margin: 50
+  input_variables:
+    city_code: "93000"
+  output_variables:
+    paris_logement_familles: 0
