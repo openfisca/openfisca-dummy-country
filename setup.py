@@ -7,7 +7,7 @@ from setuptools import setup, find_packages
 
 setup(
     name = 'OpenFisca-Dummy-Country',
-    version = '0.1.2',
+    version = '1.0.0',
     author = 'OpenFisca Team',
     author_email = 'contact@openfisca.fr',
     classifiers = [
@@ -22,7 +22,7 @@ setup(
     url = 'https://github.com/openfisca/openfisca-dummy-country',
     include_package_data = True,  # Will read MANIFEST.in
     install_requires = [
-        'OpenFisca-Core >= 6.1.0, < 10.0',
+        'OpenFisca-Core >= 10.0, < 11.0',
         ],
     packages = find_packages(),
     test_suite = 'nose.collector',
