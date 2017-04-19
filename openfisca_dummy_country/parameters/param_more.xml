@@ -7,10 +7,10 @@
     <BAREME code="abattement" description="Abattement sur les revenus d'activité, du chômage et des préretraites">
       <TRANCHE code="tranche0">
         <TAUX>
-          <VALUE deb="1998-01-01" valeur=".05" />
-          <VALUE deb="2005-01-01" valeur=".03" />
           <END deb="2015-01-01" />
           <VALUE deb="2012-01-01" valeur=".0175" />
+          <VALUE deb="2005-01-01" valeur=".03" />
+          <VALUE deb="1998-01-01" valeur=".05" />
         </TAUX>
         <SEUIL>
           <END deb="2015-01-01" />
