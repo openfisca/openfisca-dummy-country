@@ -5,7 +5,7 @@ from openfisca_core.model_api import *
 
 class neutralization_rsa(Reform):
     def apply(self):
-        self.neutralize_column('rsa')
+        self.neutralize_variable('rsa')
 
 
 
