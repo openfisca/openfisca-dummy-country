@@ -26,5 +26,4 @@ setup(
         ],
     packages = find_packages(),
     test_suite = 'nose.collector',
-    dependency_links = ['git+https://github.com/openfisca/openfisca-core.git@remove-fuzzy#egg=OpenFisca-Core-10'],
     )
