@@ -197,3 +197,16 @@ class impot_sur_fortune(Variable):
 
         return isf * patrimoine
 
+
+class plafond_imposition(Variable):
+    column = FloatCol
+    entity = Individu
+    label = u"Maximum d'imposition prévu par le bouclier fiscal"
+    definition_period = YEAR
+
+    def function(individu, period, legislation):
+        salaire_brut = individu('salaire_brut', period, options=[ADD])
+        bouclier = legislation(period).impot.bouclier
+
+        return bouclier * salaire_brut
+
