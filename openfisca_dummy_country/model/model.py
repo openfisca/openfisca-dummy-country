@@ -33,6 +33,7 @@ class birth(Variable):
     entity = Individu
     label = u"Date de naissance"
     definition_period = ETERNITY
+    url = "https://fr.wikipedia.org/wiki/Date_de_naissance"
 
 
 class city_code(Variable):
@@ -118,23 +119,36 @@ class rsa(DatedVariable):
     label = u"RSA"
     definition_period = MONTH
 
-    @dated_function(datetime.date(2010, 1, 1))
+    @dated_function(start = datetime.date(2010, 1, 1))
     def function_2010(individu, period):
         salaire_imposable = individu('salaire_imposable', period, options = [DIVIDE])
 
         return (salaire_imposable < 500) * 100.0
 
-    @dated_function(datetime.date(2011, 1, 1), datetime.date(2012, 12, 31))
+    @dated_function(start = datetime.date(2011, 1, 1))
     def function_2011_2012(individu, period):
         salaire_imposable = individu('salaire_imposable', period, options = [DIVIDE])
 
         return (salaire_imposable < 500) * 200.0
 
-    @dated_function(datetime.date(2013, 1, 1))
+    @dated_function(start = datetime.date(2013, 1, 1))
     def function_2013(individu, period):
         salaire_imposable = individu('salaire_imposable', period, options = [DIVIDE])
 
-        return (salaire_imposable < 500) * 300
+        return (salaire_imposable < 500) * 300.0
+
+
+class rmi(DatedVariable):
+    column = FloatCol
+    entity = Individu
+    label = u"RMI (remplacé par le RSA en 2010)"
+    definition_period = MONTH
+
+    @dated_function(start = datetime.date(2000, 1, 1), stop = datetime.date(2009, 12, 31))
+    def function(individu, period):
+        salaire_imposable = individu('salaire_imposable', period, options = [DIVIDE])
+
+        return (salaire_imposable == 0) * 400
 
 
 class salaire_imposable(Variable):
@@ -165,15 +179,21 @@ class salaire_net(Variable):
         return salaire_brut * 0.8
 
 
-class contribution_sociale(Variable):
+class contribution_sociale(DatedVariable):
     column = FloatCol
     entity = Individu
     label = u"Contribution payée sur le salaire"
     definition_period = YEAR
 
-    def function(individu, period, legislation):
+    @dated_function(start = datetime.date(1880, 1, 1))
+    def function_1880(individu, period, legislation):
         salaire_brut = individu('salaire_brut', period, options=[ADD])
         bareme = legislation(period).contribution_sociale.salaire.bareme
 
         return bareme.calc(salaire_brut)
 
+    @dated_function(stop = datetime.date(1879, 12, 31))
+    def function_avant_1880(individu, period, legislation):
+        salaire_brut = individu('salaire_brut', period, options=[ADD])
+
+        return salaire_brut * 0.05
