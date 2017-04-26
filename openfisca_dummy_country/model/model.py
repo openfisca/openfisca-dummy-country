@@ -5,11 +5,7 @@ import datetime
 import numpy as np
 from numpy.core.defchararray import startswith
 
-from openfisca_core.formulas import dated_function, set_input_divide_by_period, calculate_output_add
-from openfisca_core.entities import ADD, DIVIDE
-from openfisca_core.columns import BoolCol, DateCol, FixedStrCol, FloatCol, IntCol
-from openfisca_core.periods import MONTH, YEAR, ETERNITY
-from openfisca_core.variables import Variable, DatedVariable
+from openfisca_core.model_api import *
 
 from openfisca_dummy_country.entities import Famille, Individu
 
@@ -197,3 +193,42 @@ class contribution_sociale(DatedVariable):
         salaire_brut = individu('salaire_brut', period, options=[ADD])
 
         return salaire_brut * 0.05
+
+
+# start_date and stop_date are deprecated, we now prefer DatedVariable.
+# However they are still used a lot and need to be tested
+class fixed_tax(Variable):
+    column = FloatCol
+    entity = Individu
+    label = u"Former tax used to be paid by every adult"
+    definition_period = YEAR
+    start_date = date(1980, 1, 1)
+    stop_date = date(1989, 12, 31)
+
+    def function(individu, period, legislation):
+        return individu('age') >= 18 * 400
+
+
+class api(DatedVariable):
+    column = FloatCol
+    entity = Famille
+    label = u"Allocation pour Parent Isolé"
+    definition_period = MONTH
+    start_date = date(2000, 1, 1)
+    stop_date = date(2009, 12, 31)
+
+    @dated_function(start = datetime.date(2005, 1, 1))
+    def function_2005(famille, period):
+        nb_parents = famille.nb_persons(role = famille.PARENT)
+        nb_enfants = famille.nb_persons(role = famille.ENFANT)
+        condition = (nb_parents == 1) * (nb_enfants > 0)
+
+        return condition * 200
+
+    @dated_function(stop = datetime.date(2004, 12, 31))
+    def function_2000(famille, period):
+        nb_parents = famille.nb_persons(role = famille.PARENT)
+        nb_enfants = famille.nb_persons(role = famille.ENFANT)
+        condition = (nb_parents == 1) * (nb_enfants > 0)
+
+        return condition * 100
