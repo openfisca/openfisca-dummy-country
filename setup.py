@@ -22,7 +22,7 @@ setup(
     url = 'https://github.com/openfisca/openfisca-dummy-country',
     include_package_data = True,  # Will read MANIFEST.in
     install_requires = [
-        'OpenFisca-Core >= 6.1.0, < 11.0',
+        'OpenFisca-Core >= 6.1.0, < 12.0',
         ],
     packages = find_packages(),
     test_suite = 'nose.collector',
