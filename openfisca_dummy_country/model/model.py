@@ -109,7 +109,7 @@ class revenu_disponible_famille(Variable):
         return famille.sum(revenu_disponible)
 
 
-class rsa(DatedVariable):
+class rsa(Variable):
     column = FloatCol
     entity = Individu
     label = u"RSA"
@@ -134,7 +134,7 @@ class rsa(DatedVariable):
         return (salaire_imposable < 500) * 300.0
 
 
-class rmi(DatedVariable):
+class rmi(Variable):
     column = FloatCol
     entity = Individu
     label = u"RMI (remplacé par le RSA en 2010)"
@@ -175,7 +175,7 @@ class salaire_net(Variable):
         return salaire_brut * 0.8
 
 
-class contribution_sociale(DatedVariable):
+class contribution_sociale(Variable):
     column = FloatCol
     entity = Individu
     label = u"Contribution payée sur le salaire"
@@ -209,7 +209,7 @@ class fixed_tax(Variable):
         return individu('age') >= 18 * 400
 
 
-class api(DatedVariable):
+class api(Variable):
     column = FloatCol
     entity = Famille
     label = u"Allocation pour Parent Isolé"
