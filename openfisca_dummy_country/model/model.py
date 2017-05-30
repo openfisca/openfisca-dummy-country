@@ -139,8 +139,9 @@ class rmi(Variable):
     entity = Individu
     label = u"RMI (remplacé par le RSA en 2010)"
     definition_period = MONTH
+    stop_date = datetime.date(2009, 12, 31)
 
-    @dated_function(start = datetime.date(2000, 1, 1), stop = datetime.date(2009, 12, 31))
+    @dated_function(start = datetime.date(2000, 1, 1))
     def function(individu, period):
         salaire_imposable = individu('salaire_imposable', period, options = [DIVIDE])
 
@@ -188,7 +189,7 @@ class contribution_sociale(Variable):
 
         return bareme.calc(salaire_brut)
 
-    @dated_function(stop = datetime.date(1879, 12, 31))
+    @dated_function()
     def function_avant_1880(individu, period, legislation):
         salaire_brut = individu('salaire_brut', period, options=[ADD])
 
@@ -215,7 +216,7 @@ class api(Variable):
     label = u"Allocation pour Parent Isolé"
     definition_period = MONTH
     start_date = date(2000, 1, 1)
-    stop_date = date(2009, 12, 31)
+    stop_date = date(2004, 12, 31)
 
     @dated_function(start = datetime.date(2005, 1, 1))
     def function_2005(famille, period):
@@ -225,7 +226,7 @@ class api(Variable):
 
         return condition * 200
 
-    @dated_function(stop = datetime.date(2004, 12, 31))
+    @dated_function()
     def function_2000(famille, period):
         nb_parents = famille.nb_persons(role = famille.PARENT)
         nb_enfants = famille.nb_persons(role = famille.ENFANT)
