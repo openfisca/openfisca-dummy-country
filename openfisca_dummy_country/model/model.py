@@ -216,7 +216,7 @@ class api(Variable):
     label = u"Allocation pour Parent Isolé"
     definition_period = MONTH
     start_date = date(2000, 1, 1)
-    stop_date = date(2004, 12, 31)
+    stop_date = date(2009, 12, 31)
 
     @dated_function(start = datetime.date(2005, 1, 1))
     def function_2005(famille, period):
@@ -226,7 +226,7 @@ class api(Variable):
 
         return condition * 200
 
-    @dated_function()
+    @dated_function(start = datetime.date(2000, 1, 1))
     def function_2000(famille, period):
         nb_parents = famille.nb_persons(role = famille.PARENT)
         nb_enfants = famille.nb_persons(role = famille.ENFANT)
