@@ -12,7 +12,7 @@ class neutralization_rsa(Reform):
 class salaire_net(Variable):
     definition_period = MONTH
 
-    def function(individu, period):
+    def formula(individu, period):
         salaire_brut = individu('salaire_brut', period)
 
         return salaire_brut

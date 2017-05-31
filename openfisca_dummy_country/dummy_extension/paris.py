@@ -11,6 +11,6 @@ class paris_logement_familles(Variable):
     entity = Famille
     definition_period = MONTH
 
-    def function(famille, period):
+    def formula(famille, period):
         condition = round_(famille('city_code', period).astype(int) / 1000) == 75
         return condition * 100
